@@ -46,7 +46,8 @@ class letsencrypt::install (
   if $install_method == 'vcs' {
     if $manage_dependencies {
       $dependencies = ['python', 'git']
-      ensure_packages($dependencies)
+      ensure_packages('python')
+      include git
       Package[$dependencies] -> Vcsrepo[$path]
     }
 
